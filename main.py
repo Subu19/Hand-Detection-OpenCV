@@ -63,19 +63,19 @@ while cap.isOpened():
     if len(lmList) != 0:
         cv2.circle(img, (lmList[8][1], lmList[8][2]), 15, (255, 0, 255), cv2.FILLED)
         # trigger to right
-        if lmList[8][1] < 300 and cooldown == 0 and direction == "none":
+        if (lmList[8][1] < 300 or lmList[12][1] < 300 or lmList[16][1] < 300 or lmList[20][1] < 300) and cooldown == 0 and direction == "none":
             counting = True
             timer = 0
             direction = "right"
 
         # trigger to left
-        if lmList[8][1] > x-400 and cooldown == 0 and direction == "none":
+        if (lmList[8][1] > x-400 or lmList[16][1] > x-400 or lmList[20][1] > x-400 or lmList[12][1] > x-400) and cooldown == 0 and direction == "none":
             counting = True
             timer = 0
             direction = "left"
 
         # check if swipped right
-        if lmList[8][1] > x-400 and timer < 2 and direction == "right":
+        if (lmList[8][1] > x-400 or lmList[16][1] > x-400 or lmList[20][1] > x-400 or lmList[12][1] > x-400) and timer < 2 and direction == "right":
             print("Swipped right")
             keyboard.press(Key.left)
             keyboard.release(Key.left)
@@ -84,7 +84,7 @@ while cap.isOpened():
             direction = "none"
 
         # check if swipped left
-        if lmList[8][1] < 300 and timer < 2 and direction == "left":
+        if (lmList[8][1] < 300 or lmList[12][1] < 300 or lmList[16][1] < 300 or lmList[20][1] < 300) and timer < 2 and direction == "left":
                 print("Swipped left")
                 keyboard.press(Key.right)
                 keyboard.release(Key.right)
